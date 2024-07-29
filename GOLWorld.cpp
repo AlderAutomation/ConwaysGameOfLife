@@ -2,23 +2,23 @@
 
 GOLWorld::GOLWorld(int wide, int high)
 {
-    set_width(wide); 
-    set_height(high); 
+    setWidth(wide); 
+    setHeight(high); 
 }
 
-int GOLWorld::get_width(){
+int GOLWorld::getWidth(){
     return width; 
 }
 
-int GOLWorld::get_height(){
+int GOLWorld::getHeight(){
     return height; 
 }
 
-void GOLWorld::set_width(int wide){
+void GOLWorld::setWidth(int wide){
     width = wide; 
 }
 
-void GOLWorld::set_height(int high){
+void GOLWorld::setHeight(int high){
     height = high; 
 }
 
