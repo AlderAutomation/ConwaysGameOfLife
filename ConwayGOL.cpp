@@ -1,5 +1,8 @@
+#include<SFML/Window.hpp>
+#include<SFML/Graphics.hpp>
+#include<SFML/System.hpp>
+
 #include<iostream>
-#include <SFML/Graphics.hpp>
 
 #include"GOLWorld.h"
 #include"LifeForm.h"
@@ -17,6 +20,17 @@ int main ()
     std::cout << "alive: " << being.getIsAlive() << std::endl; 
 
     std::cout << "hello world" << std::endl; 
+
+    sf::Window window(sf::VideoMode(800, 600), "Conway"); 
+
+    while (window.isOpen()) {
+        sf::Event event; 
+        while (window.pollEvent(event)){
+            if (event.type == sf::Event::Closed){
+                window.close(); 
+            }
+        }
+    }
 
     return 0;
 }
