@@ -1,5 +1,6 @@
 #include<iostream>
-//sfml 
+#include <SFML/Graphics.hpp>
+
 #include"GOLWorld.h"
 #include"LifeForm.h"
 
@@ -14,6 +15,8 @@ int main ()
     std::cout << "X: " << being.getPosX() << std::endl; 
     std::cout << "Y: " << being.getPosY() << std::endl; 
     std::cout << "alive: " << being.getIsAlive() << std::endl; 
+
+    std::cout << "hello world" << std::endl; 
 
     return 0;
 }
