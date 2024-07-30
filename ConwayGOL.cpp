@@ -27,7 +27,16 @@ int main ()
         }
     }
 
-    sf::Window window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman"); 
+    sf::RenderWindow window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman"); 
+
+    sf::RectangleShape lifeformShape(sf::Vector2f(50.f, 50.f)); 
+    lifeformShape.setFillColor(sf::Color(255, 255, 255));
+    lifeformShape.setPosition(100.f, 100.f);
+
+    window.draw(lifeformShape); 
+
+    window.display();
+
 
     while (window.isOpen()) {
         sf::Event event; 
