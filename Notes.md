@@ -5,6 +5,9 @@
 - Any live cell with two or three live neighbours lives, unchanged, to the next generation.  
 - Any dead cell with exactly three live neighbours will come to life.  
 
+- neighrbours are horizontal, vertical, diaganol. 
+
+
 ### Requirements 
 
 - need a grid  

@@ -1,5 +1,11 @@
 #include "LifeForm.h"
 
+LifeForm::LifeForm() {
+    posX = 0; 
+    posY = 0; 
+    isAlive = false; 
+}
+
 LifeForm::LifeForm(int x, int y, bool alive){
     posX = x; 
     posY = y; 

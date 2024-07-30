@@ -2,26 +2,32 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/System.hpp>
 
+
 #include<iostream>
 
 #include"GOLWorld.h"
-#include"LifeForm.h"
 
 int main ()
 {
-    GOLWorld world(100,100); 
-    LifeForm being(10, 10, true); 
+    int windowWidth = 1000; 
+    int windowHeight = 1000; 
 
-    std::cout << "World Width: " << world.getWidth() << std::endl; 
-    std::cout << "World Height: " << world.getHeight() << std::endl; 
+    int pixelSize = 50; 
 
-    std::cout << "X: " << being.getPosX() << std::endl; 
-    std::cout << "Y: " << being.getPosY() << std::endl; 
-    std::cout << "alive: " << being.getIsAlive() << std::endl; 
+    int cellRows = windowHeight/pixelSize; 
+    int cellCols = windowWidth/pixelSize; 
 
-    std::cout << "hello world" << std::endl; 
+    GOLWorld world(windowWidth, windowHeight, cellRows, cellCols); 
+    world.populateWorld(cellRows, cellCols);
 
-    sf::Window window(sf::VideoMode(800, 600), "Conway"); 
+    for (int row = 0 ; row < cellRows; row ++){
+        for (int col = 0 ; col < cellCols ; col ++){
+            LifeForm lf = world.getResident(row, col); 
+            std::cout << "resident at: " << lf.getPosX() <<" & " << lf.getPosY() << " is " << lf.getIsAlive() << std::endl; 
+        }
+    }
+
+    sf::Window window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman"); 
 
     while (window.isOpen()) {
         sf::Event event; 
@@ -31,6 +37,7 @@ int main ()
             }
         }
     }
+
 
     return 0;
 }

@@ -4,7 +4,8 @@
 class LifeForm
 {
 public:
-    LifeForm(int x, int y, bool alive);
+    LifeForm(); // default constructor
+    LifeForm(int x, int y, bool alive); // preferred constructor
     ~LifeForm();
     int getPosX(); 
     int getPosY(); 

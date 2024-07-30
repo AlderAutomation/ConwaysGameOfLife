@@ -1,6 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++11 -Wall -g
-LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
+LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system 
 
 SOURCES=ConwayGOL.cpp LifeForm.cpp GOLWorld.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
