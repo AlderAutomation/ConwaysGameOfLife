@@ -7,6 +7,10 @@
 
 #include"GOLWorld.h"
 
+// Prototypes
+void drawLifeForms(sf::RenderWindow *window, double size, double x, double y, bool isAlive); 
+
+
 int main ()
 {
     int windowWidth = 1000; 
@@ -20,20 +24,17 @@ int main ()
     GOLWorld world(windowWidth, windowHeight, cellRows, cellCols); 
     world.populateWorld(cellRows, cellCols);
 
+    sf::RenderWindow window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman", sf::Style::Close | sf::Style::Titlebar); 
+
     for (int row = 0 ; row < cellRows; row ++){
         for (int col = 0 ; col < cellCols ; col ++){
             LifeForm lf = world.getResident(row, col); 
-            std::cout << "resident at: " << lf.getPosX() <<" & " << lf.getPosY() << " is " << lf.getIsAlive() << std::endl; 
+            // std::cout << "resident at: " << lf.getPosX() <<" & " << lf.getPosY() << " is " << lf.getIsAlive() << std::endl; 
+
+            drawLifeForms(&window, pixelSize, lf.getPosX(), lf.getPosY(), lf.getIsAlive()); 
         }
     }
 
-    sf::RenderWindow window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman"); 
-
-    sf::RectangleShape lifeformShape(sf::Vector2f(50.f, 50.f)); 
-    lifeformShape.setFillColor(sf::Color(255, 255, 255));
-    lifeformShape.setPosition(100.f, 100.f);
-
-    window.draw(lifeformShape); 
 
     window.display();
 
@@ -49,4 +50,19 @@ int main ()
 
 
     return 0;
+}
+
+void drawLifeForms(sf::RenderWindow *window, double size, double x, double y, bool isAlive){
+    sf::RectangleShape lifeformShape(sf::Vector2f(size, size));
+
+    if (isAlive){
+        lifeformShape.setFillColor(sf::Color(255, 255, 255));
+    } else {
+        lifeformShape.setFillColor(sf::Color(0, 0, 0));
+    }
+
+    lifeformShape.setPosition(x*size, y*size);
+
+    window->draw(lifeformShape); 
+
 }

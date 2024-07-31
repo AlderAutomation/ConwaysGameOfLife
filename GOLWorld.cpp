@@ -1,5 +1,7 @@
 #include<vector> 
 #include<iostream> 
+#include<random> 
+
 #include"GOLWorld.h"
 #include"LifeForm.h"
 
@@ -39,11 +41,16 @@ void GOLWorld::setCols(int cols){
 }
 
 void GOLWorld::populateWorld(int rows, int cols){
+    std::random_device ranDev; 
+    std::mt19937 gen(ranDev());
+    std::bernoulli_distribution aliveChance(0.75); 
+
+
     for (int row = 0 ; row < rows; row ++){
         for (int col = 0 ; col < cols ; col ++){
             currentLifeFormVector[row][col].setPosX(row); 
             currentLifeFormVector[row][col].setPosY(col); 
-            currentLifeFormVector[row][col].setIsAlive(true); 
+            currentLifeFormVector[row][col].setIsAlive(aliveChance(gen)); 
         }
     }
 
