@@ -24,6 +24,14 @@ int GOLWorld::getHeight(){
     return height; 
 }
 
+double GOLWorld::getAliveChance(){
+    return aliveChance; 
+}
+
+LifeForm GOLWorld::getResident(int row, int col){
+    return currentLifeFormVector[row][col]; 
+}
+
 void GOLWorld::setWidth(int wide){
     width = wide; 
 }
@@ -40,22 +48,23 @@ void GOLWorld::setCols(int cols){
     cols = cols; 
 }
 
+void GOLWorld::setAliveChance(double chance){
+    aliveChance = chance; 
+}
+
 void GOLWorld::populateWorld(int rows, int cols){
     std::random_device ranDev; 
     std::mt19937 gen(ranDev());
-    std::bernoulli_distribution aliveChance(0.75); 
+    std::bernoulli_distribution aliveChanceGen(aliveChance); 
 
-
+    // TODO fix duplication of row / col variables
     for (int row = 0 ; row < rows; row ++){
         for (int col = 0 ; col < cols ; col ++){
             currentLifeFormVector[row][col].setPosX(row); 
             currentLifeFormVector[row][col].setPosY(col); 
-            currentLifeFormVector[row][col].setIsAlive(aliveChance(gen)); 
+            currentLifeFormVector[row][col].setIsAlive(aliveChanceGen(gen)); 
         }
     }
 
 }
 
-LifeForm GOLWorld::getResident(int row, int col){
-    return currentLifeFormVector[row][col]; 
-}

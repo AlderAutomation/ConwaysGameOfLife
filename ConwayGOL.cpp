@@ -16,12 +16,15 @@ int main ()
     int windowWidth = 1000; 
     int windowHeight = 1000; 
 
-    int pixelSize = 50; 
+    int pixelSize = 25; 
+    double chanceToLive = 0.75; 
 
     int cellRows = windowHeight/pixelSize; 
     int cellCols = windowWidth/pixelSize; 
 
     GOLWorld world(windowWidth, windowHeight, cellRows, cellCols); 
+    
+    world.setAliveChance(chanceToLive); 
     world.populateWorld(cellRows, cellCols);
 
     sf::RenderWindow window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman", sf::Style::Close | sf::Style::Titlebar); 
