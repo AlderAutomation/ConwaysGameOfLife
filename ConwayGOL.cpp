@@ -8,7 +8,7 @@
 #include"GOLWorld.h"
 
 // Prototypes
-void drawLifeForms(sf::RenderWindow *window, double size, double x, double y, bool isAlive); 
+void drawWorldPopulace(sf::RenderWindow *window, GOLWorld *world, double size, int cellRows, int cellCols); 
 
 
 int main ()
@@ -29,15 +29,7 @@ int main ()
 
     sf::RenderWindow window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman", sf::Style::Close | sf::Style::Titlebar); 
 
-    for (int row = 0 ; row < cellRows; row ++){
-        for (int col = 0 ; col < cellCols ; col ++){
-            LifeForm lf = world.getResident(row, col); 
-            // std::cout << "resident at: " << lf.getPosX() <<" & " << lf.getPosY() << " is " << lf.getIsAlive() << std::endl; 
-
-            drawLifeForms(&window, pixelSize, lf.getPosX(), lf.getPosY(), lf.getIsAlive()); 
-        }
-    }
-
+    drawWorldPopulace(&window, &world, pixelSize, cellRows, cellCols);
 
     window.display();
 
@@ -55,17 +47,22 @@ int main ()
     return 0;
 }
 
-void drawLifeForms(sf::RenderWindow *window, double size, double x, double y, bool isAlive){
-    sf::RectangleShape lifeformShape(sf::Vector2f(size, size));
+void drawWorldPopulace(sf::RenderWindow *window, GOLWorld *world, double size, int cellRows, int cellCols){
+    for (int row = 0 ; row < cellRows; row ++){
+        for (int col = 0 ; col < cellCols ; col ++){
+            LifeForm lf = world->getResident(row, col); 
 
-    if (isAlive){
-        lifeformShape.setFillColor(sf::Color(255, 255, 255));
-    } else {
-        lifeformShape.setFillColor(sf::Color(0, 0, 0));
+            sf::RectangleShape lifeformShape(sf::Vector2f(size, size));
+
+            if (lf.getIsAlive() ){
+                lifeformShape.setFillColor(sf::Color(255, 255, 255));
+            } else {
+                lifeformShape.setFillColor(sf::Color(0, 0, 0));
+            }
+
+            lifeformShape.setPosition(lf.getPosX()*size, lf.getPosY()*size);
+
+            window->draw(lifeformShape); 
+        }
     }
-
-    lifeformShape.setPosition(x*size, y*size);
-
-    window->draw(lifeformShape); 
-
 }
