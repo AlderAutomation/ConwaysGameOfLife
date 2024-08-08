@@ -26,7 +26,7 @@ int main ()
     GOLWorld world(windowWidth, windowHeight, cellRows, cellCols); 
     
     world.setAliveChance(chanceToLive); 
-    world.populateWorld(cellRows, cellCols);
+    world.populateWorld();
 
     sf::RenderWindow window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman", sf::Style::Close | sf::Style::Titlebar); 
 
@@ -74,7 +74,6 @@ void drawWorldPopulace(sf::RenderWindow *window, GOLWorld *world, double size, i
 }
 
 
-/* TODO the draw and the check have conflicting row col order need to fix that */
 void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
     LifeForm neighbour; 
     bool isNeighbourAlive = false; 

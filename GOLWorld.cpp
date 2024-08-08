@@ -8,24 +8,24 @@
 
 GOLWorld::GOLWorld(int wide, int high, int rows, int cols)
 {
-    setWidth(wide); 
-    setHeight(high); 
-    setRows(rows); 
-    setCols(cols); 
+    worldWidth = wide; 
+    worldHeight = high; 
+    worldRows = rows; 
+    worldCols = cols;
     currentLifeFormVector.resize(rows, std::vector<LifeForm>(cols));
 
 }
 
 int GOLWorld::getWidth(){
-    return width; 
+    return worldWidth; 
 }
 
 int GOLWorld::getHeight(){
-    return height; 
+    return worldHeight; 
 }
 
 double GOLWorld::getAliveChance(){
-    return aliveChance; 
+    return worldAliveChance; 
 }
 
 LifeForm GOLWorld::getResident(int row, int col){
@@ -33,33 +33,32 @@ LifeForm GOLWorld::getResident(int row, int col){
 }
 
 void GOLWorld::setWidth(int wide){
-    width = wide; 
+    worldWidth = wide; 
 }
 
 void GOLWorld::setHeight(int high){
-    height = high; 
+    worldHeight = high; 
 }
 
 void GOLWorld::setRows(int rows){
-    rows = rows; 
+    worldRows = rows; 
 }
 
 void GOLWorld::setCols(int cols){
-    cols = cols; 
+    worldCols = cols; 
 }
 
 void GOLWorld::setAliveChance(double chance){
-    aliveChance = chance; 
+    worldAliveChance = chance; 
 }
 
-void GOLWorld::populateWorld(int rows, int cols){
+void GOLWorld::populateWorld(){
     std::random_device ranDev; 
     std::mt19937 gen(ranDev());
-    std::bernoulli_distribution aliveChanceGen(aliveChance); 
+    std::bernoulli_distribution aliveChanceGen(worldAliveChance); 
 
-    // TODO fix duplication of row / col variables
-    for (int row = 0 ; row < rows; row ++){
-        for (int col = 0 ; col < cols ; col ++){
+    for (int row = 0 ; row < worldRows; row ++){
+        for (int col = 0 ; col < worldCols ; col ++){
             currentLifeFormVector[row][col].setPosX(row); 
             currentLifeFormVector[row][col].setPosY(col); 
             currentLifeFormVector[row][col].setIsAlive(aliveChanceGen(gen)); 

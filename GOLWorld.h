@@ -20,15 +20,15 @@ public:
     void setCols(int cols);
     void setAliveChance(double chance); 
 
-    void populateWorld(int rows, int cols); 
+    void populateWorld(); 
 
 
 private: 
-    int width; 
-    int height;
-    int rows; 
-    int cols; 
-    double aliveChance; 
+    int worldWidth; 
+    int worldHeight;
+    int worldRows; 
+    int worldCols; 
+    double worldAliveChance; 
 
     std::vector<std::vector<LifeForm>> currentLifeFormVector;
     std::vector<std::vector<LifeForm>> newLifeFormVector;
