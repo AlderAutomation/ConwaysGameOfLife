@@ -1,5 +1,6 @@
 #include "LifeForm.h"
 
+// Constructors
 LifeForm::LifeForm() {
     posX = 0; 
     posY = 0; 
@@ -12,10 +13,12 @@ LifeForm::LifeForm(int x, int y, bool alive){
     isAlive = alive; 
 }
 
+// Destructor
 LifeForm::~LifeForm() {
 
 }
 
+// Getters
 int LifeForm::getPosX() {
     return posX; 
 }
@@ -28,6 +31,12 @@ bool LifeForm::getIsAlive() {
     return isAlive;
 }
 
+bool LifeForm::getIsDying(){
+    return isDying; 
+}
+
+
+// Setters
 void LifeForm::setPosX(int x) {
     posX = x; 
 }
@@ -38,5 +47,9 @@ void LifeForm::setPosY(int y) {
 
 void LifeForm::setIsAlive(bool alive) {
     isAlive = alive; 
+}
+
+void LifeForm::setisDying(bool dying) {
+    isDying = dying; 
 }
 

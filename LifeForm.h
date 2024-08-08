@@ -10,16 +10,19 @@ public:
     int getPosX(); 
     int getPosY(); 
     bool getIsAlive(); 
+    bool getIsDying(); 
+
     void setPosX(int x); 
     void setPosY(int y); 
     void setIsAlive(bool alive); 
-
+    void setisDying(bool dying);
 
 private:
     int posX; 
     int posY; 
     bool isAlive; 
-    // Colour: alive = black. dead = white 
+    bool isDying;
+
 };
 
 
