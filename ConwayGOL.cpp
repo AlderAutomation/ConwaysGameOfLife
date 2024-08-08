@@ -29,7 +29,6 @@ int main ()
     world.populateWorld(cellRows, cellCols);
 
     sf::RenderWindow window(sf::VideoMode(windowHeight, windowWidth), "Conway's Game of Life by Matthew Heltman", sf::Style::Close | sf::Style::Titlebar); 
-    std::cout << "Main World: " << &world << std::endl; 
 
     drawWorldPopulace(&window, &world, pixelSize, cellRows, cellCols);
     checkNeighbours(&world, cellRows, cellCols); 
@@ -63,18 +62,22 @@ void drawWorldPopulace(sf::RenderWindow *window, GOLWorld *world, double size, i
                 lifeformShape.setFillColor(sf::Color(255, 255, 255)); // White is dead 
             }
 
-            lifeformShape.setPosition(lf.getPosX()*size, lf.getPosY()*size);
+            /* sfml appears to be backwards to how I have been programming 
+            my X is downwards rows, sfml x is sideways columns
+            my Y is sideways cols, sfml y is downwards rows 
+            */
+            lifeformShape.setPosition(lf.getPosY()*size, lf.getPosX()*size); 
 
             window->draw(lifeformShape); 
         }
     }
 }
 
+
+/* TODO the draw and the check have conflicting row col order need to fix that */
 void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
     LifeForm neighbour; 
     bool isNeighbourAlive = false; 
-
-    std::cout << "checkNeighbours World: " << world << std::endl; 
 
     // for (int row = 0 ; row < cellRows; row ++){
     //     for (int col = 0 ; col < cellCols ; col ++){
@@ -86,7 +89,6 @@ void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
     int sumLiveNeighbours = 0; 
 
     if ((row >= 1 && col >= 1) && (row < cellRows-1 && col < cellCols-1)) {
-        std::cout << "Row: " << row << std::endl; 
         // Top row
         neighbour = world->getResident(row-1, col-1); 
         isNeighbourAlive = neighbour.getIsAlive(); 
