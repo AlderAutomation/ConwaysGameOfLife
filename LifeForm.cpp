@@ -2,15 +2,15 @@
 
 // Constructors
 LifeForm::LifeForm() {
-    posX = 0; 
-    posY = 0; 
-    isAlive = false; 
+    LF_posX = 0; 
+    LF_posY = 0; 
+    LF_isAlive = false; 
 }
 
 LifeForm::LifeForm(int x, int y, bool alive){
-    posX = x; 
-    posY = y; 
-    isAlive = alive; 
+    LF_posX = x; 
+    LF_posY = y; 
+    LF_isAlive = alive; 
 }
 
 // Destructor
@@ -20,36 +20,43 @@ LifeForm::~LifeForm() {
 
 // Getters
 int LifeForm::getPosX() {
-    return posX; 
+    return LF_posX; 
 }
 
 int LifeForm::getPosY() {
-    return posY;
+    return LF_posY;
 }
 
 bool LifeForm::getIsAlive() {
-    return isAlive;
+    return LF_isAlive;
 }
 
 bool LifeForm::getIsDying(){
-    return isDying; 
+    return LF_isDying; 
+}
+
+int LifeForm::getLivingNeighbours(){
+    return LF_livingNeighbours; 
 }
 
 
 // Setters
 void LifeForm::setPosX(int x) {
-    posX = x; 
+    LF_posX = x; 
 }
 
 void LifeForm::setPosY(int y) {
-    posY = y; 
+    LF_posY = y; 
 }
 
 void LifeForm::setIsAlive(bool alive) {
-    isAlive = alive; 
+    LF_isAlive = alive; 
 }
 
 void LifeForm::setisDying(bool dying) {
-    isDying = dying; 
+    LF_isDying = dying; 
 }
 
+void LifeForm::setLivingNeighbours(int livingNeighbours) {
+    LF_livingNeighbours = livingNeighbours; 
+}
