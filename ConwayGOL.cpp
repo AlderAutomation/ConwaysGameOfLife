@@ -321,8 +321,6 @@ void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
                     }
                 }
             }
-        
-            std::cout << "LifeForm at " << lf.getPosX() << "," << lf.getPosY() << " has " << sumLiveNeighbours << " living neighbours. " << std::endl; 
-        }
+                }
     }
 }
