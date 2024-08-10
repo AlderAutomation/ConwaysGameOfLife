@@ -78,70 +78,251 @@ void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
     LifeForm neighbour; 
     bool isNeighbourAlive = false; 
 
-    // for (int row = 0 ; row < cellRows; row ++){
-    //     for (int col = 0 ; col < cellCols ; col ++){
+    for (int row = 0 ; row < cellRows; row ++){
+        for (int col = 0 ; col < cellCols ; col ++){
 
-    int row = 1; 
-    int col = 1; 
+            LifeForm lf = world->getResident(row, col); 
+            int sumLiveNeighbours = 0; 
 
-    LifeForm lf = world->getResident(row, col); 
-    int sumLiveNeighbours = 0; 
-
-    if ((row >= 1 && col >= 1) && (row < cellRows-1 && col < cellCols-1)) {
-        // Top row
-        neighbour = world->getResident(row-1, col-1); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
+            if ((row == 0)) { // first row check.... only has two rows 
+                if (col == 0) {
+                    // Mid Row 
+                    neighbour = world->getResident(row, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Bottom row
+                    neighbour = world->getResident(row+1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                } else if (col == cellCols-1) {
+                    // Mid Row 
+                    neighbour = world->getResident(row, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Bottom row
+                    neighbour = world->getResident(row+1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                } else {
+                    // Mid Row 
+                    neighbour = world->getResident(row, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Bottom row
+                    neighbour = world->getResident(row+1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                }
+            } else if (row == cellRows-1) {
+                if (col == 0) {
+                    // top row
+                    neighbour = world->getResident(row-1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Mid Row 
+                    neighbour = world->getResident(row, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                } else if (col == cellCols-1) {
+                    // top row
+                    neighbour = world->getResident(row-1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Mid Row 
+                    neighbour = world->getResident(row, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                } else {
+                    // top row
+                    neighbour = world->getResident(row-1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Mid Row 
+                    neighbour = world->getResident(row, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                }
+            } else {
+                if (col == 0) {
+                    // Top row
+                    neighbour = world->getResident(row-1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Mid Row 
+                    neighbour = world->getResident(row, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Bottom row
+                    neighbour = world->getResident(row+1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                } else if (col == cellCols-1) {
+                    // Top row
+                    neighbour = world->getResident(row-1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Mid Row 
+                    neighbour = world->getResident(row, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Bottom row
+                    neighbour = world->getResident(row+1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                } else {
+                    // Top row
+                    neighbour = world->getResident(row-1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row-1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Mid Row 
+                    neighbour = world->getResident(row, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    // Bottom row
+                    neighbour = world->getResident(row+1, col-1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                    neighbour = world->getResident(row+1, col+1); 
+                    isNeighbourAlive = neighbour.getIsAlive(); 
+                    if (isNeighbourAlive == true){
+                        sumLiveNeighbours++;
+                    }
+                }
+            }
+        
+            std::cout << "LifeForm at " << lf.getPosX() << "," << lf.getPosY() << " has " << sumLiveNeighbours << " living neighbours. " << std::endl; 
         }
-        neighbour = world->getResident(row-1, col); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
-        }
-        neighbour = world->getResident(row-1, col+1); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
-        }
-        // Mid Row 
-        neighbour = world->getResident(row, col-1); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
-        }
-        neighbour = world->getResident(row, col+1); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
-        }
-        // Bottom row
-        neighbour = world->getResident(row+1, col-1); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
-        }
-        neighbour = world->getResident(row+1, col); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
-        }
-        neighbour = world->getResident(row+1, col+1); 
-        isNeighbourAlive = neighbour.getIsAlive(); 
-        std::cout << neighbour.getPosX() << "," << neighbour.getPosY() << " is alive: " << isNeighbourAlive << std::endl; 
-        if (isNeighbourAlive == true){
-            sumLiveNeighbours++;
-        }
-            // }
-
-        std::cout << "LifeForm at " << lf.getPosX() << "," << lf.getPosY() << " has " << sumLiveNeighbours << " living neighbours. " << std::endl; 
-        }
-    // }
+    }
 }
