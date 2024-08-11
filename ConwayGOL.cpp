@@ -17,8 +17,8 @@ int main ()
     int windowWidth = 1000; 
     int windowHeight = 1000; 
 
-    int pixelSize = 100; 
-    double chanceToLive = 0.20; // adjust higher to have more living 0.00 - 1.00
+    int pixelSize = 10; 
+    double chanceToLive = 0.40; // adjust higher to have more living 0.00 - 1.00
 
     int cellRows = windowHeight/pixelSize; 
     int cellCols = windowWidth/pixelSize; 
@@ -36,11 +36,26 @@ int main ()
     window.display();
 
 
+
     while (window.isOpen()) {
         sf::Event event; 
         while (window.pollEvent(event)){
-            if (event.type == sf::Event::Closed){
+            if (event.type == sf::Event::Closed) {
                 window.close(); 
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    window.close(); 
+                } else if (event.key.code == sf::Keyboard::Space) {
+                    checkNeighbours(&world, cellRows, cellCols);    
+                    world.populateNewWorld(); 
+                    world.swapWorlds();
+
+                    drawWorldPopulace(&window, &world, pixelSize, cellRows, cellCols);
+                    window.display();
+
+                    std::cout << "worlds changed" << std::endl;
+                }
             }
         }
     }
@@ -84,6 +99,8 @@ void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
             LifeForm lf = world->getResident(row, col); 
             int sumLiveNeighbours = 0; 
 
+
+// TODO make this function better. this is a lot of repetiveness and is gross 
             if ((row == 0)) { // first row check.... only has two rows 
                 if (col == 0) {
                     // Mid Row 
@@ -196,7 +213,8 @@ void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
                     }
                     neighbour = world->getResident(row-1, col); 
                     isNeighbourAlive = neighbour.getIsAlive(); 
-                    if (isNeighbourAlive == true){
+                            // std::cout << lf.getLivingNeighbours() << std::endl; 
+    if (isNeighbourAlive == true){
                         sumLiveNeighbours++;
                     }
                     neighbour = world->getResident(row-1, col+1); 
@@ -321,6 +339,12 @@ void checkNeighbours(GOLWorld *world, int cellRows, int cellCols){
                     }
                 }
             }
-                }
+
+            lf.setLivingNeighbours(sumLiveNeighbours); 
+
+            // std::cout << lf.getLivingNeighbours() << std::endl; 
+
+            world->setResident(lf, row, col); 
+        }
     }
 }
