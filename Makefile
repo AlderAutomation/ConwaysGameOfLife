@@ -1,17 +1,16 @@
-CXX=g++
-LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system 
+all: ConwayGOL.out
 
-SOURCES=ConwayGOL.cpp LifeForm.cpp GOLWorld.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=ConwayGOL.out
+ConwayGOL.out: ConwayGOL.o GOLWorld.o LifeForm.o
+	g++ ConwayGOL.o GOLWorld.o LifeForm.o -o ConwayGOL.out -lsfml-graphics -lsfml-window -lsfml-system
 
-all: $(EXECUTABLE)
+ConwayGOL.o: ConwayGOL.cpp
+	g++ -c ConwayGOL.cpp -o ConwayGOL.o
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
+GOLWorld.o: GOLWorld.cpp
+	g++ -c GOLWorld.cpp -o GOLWorld.o
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+LifeForm.o: LifeForm.cpp
+	g++ -c LifeForm.cpp -o LifeForm.o
 
 clean:
-	rm -f $(EXECUTABLE) $(OBJECTS)
+	rm -f ConwayGOL.out *.o
